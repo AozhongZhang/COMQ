@@ -44,7 +44,6 @@ class Imagenet(Dataset):
     Validation dataset of Imagenet
     """
     def __init__(self, data_dir, transform):
-        # we can maybe pput this into diff files.
         self.Y = torch.from_numpy(parse_imagenet_val_labels(data_dir)).long()
         self.X_path = sorted(glob.glob(os.path.join(data_dir, 'ILSVRC2012_img_val/*.JPEG')), 
             key=lambda x: re.search('%s(.*)%s' % ('ILSVRC2012_img_val/', '.JPEG'), x).group(1))
@@ -63,7 +62,6 @@ class Imagenet(Dataset):
 
 def data_loader(ds_path, batch_size, train_transform, test_transform, num_workers=8): 
 
-    # data_dir = '../data/ILSVRC2012'
     data_dir = ds_path
 
     if not os.path.isdir(data_dir):
@@ -74,11 +72,7 @@ def data_loader(ds_path, batch_size, train_transform, test_transform, num_worker
         
     if not os.path.isfile(os.path.join(data_dir, 'wnid_to_label.pickle')):
         with open(os.path.join(data_dir, 'wnid_to_label.pickle'), 'wb') as f:
-            pickle.dump(train_ds.class_to_idx, f)  
-
-    # if not os.path.isfile('../data/ILSVRC2012/wnid_to_label.pickle'):
-    #     with open('../data/ILSVRC2012/wnid_to_label.pickle', 'wb') as f:
-    #         pickle.dump(train_ds.class_to_idx, f)         
+            pickle.dump(train_ds.class_to_idx, f)          
 
     test_ds = Imagenet(data_dir, test_transform) 
     train_dl = DataLoader(train_ds, batch_size, shuffle=True, num_workers=num_workers,

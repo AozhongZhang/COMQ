@@ -43,7 +43,7 @@ if __name__ == '__main__':
         help='model name'
     )
     parser.add_argument(
-        '--data_path', default='/network/rit/lab/yinlab/azzhang/GPFQ/data/ILSVRC2012', type=str, 
+        '--data_path', default='', type=str, 
         help='path to ImageNet data'
     )
     parser.add_argument(
@@ -112,11 +112,6 @@ if __name__ == '__main__':
     end_time = datetime.now()
     
     print(f'\nTime for quantization: {end_time - start_time}\n')
-
-    topk_accuracy = test_accuracy(quantized_model, test_loader, (1, 5))
-
-    print(f'Top-1 accuracy is {topk_accuracy[0]}.')
-    print(f'Top-5 accuracy is {topk_accuracy[1]}.')
 
     if args.batchtuning:
         batch_tuning_loader, test_loader = data_loader(args.data_path, 128, train_transforms, test_transforms, args.num_workers)

@@ -94,10 +94,6 @@ def BatchNrom_tuning(model, model_name, train_loader, device):
         freeze_layers_swin(model)
     else:
         freeze_layers_vit(model)
-    
-    for name, param in model.named_parameters():
-            if param.requires_grad:
-                print(name)
 
     n_epochs = 1
     lr = 1 * 1e-4
@@ -105,8 +101,6 @@ def BatchNrom_tuning(model, model_name, train_loader, device):
     pg = [p for p in model.parameters() if p.requires_grad]
     optimizer = optim.Adam(pg, lr=lr, weight_decay=weight_decay)
     model.train()
-    print(f'\n Start re-training: {device} is available, num_epochs {n_epochs}, \
-                    lr {lr}\n')
 
     for epoch in range(1, n_epochs+1):
         batch_losses = []

@@ -37,14 +37,11 @@ class COMQ():
             i for i, layer in enumerate(self.quantized_layers) 
                 if type(layer) in {nn.Linear} and i not in self.last_layer
                 ]
-        print(f'Layer to be quantized {layers_Q}')
-        print(f'Total num to quantize {len(layers_Q)-1}')     
+        print(f'Layer to be quantized {layers_Q}')     
         
         for layer_idx in layers_Q:
   
             layer_input = Layer_input(self.orig_model, layer_idx, self.orig_layers, self.data_loader_iter, self.device)
-
-            print(f'\nQuantizing layer: {layer_idx}')
 
             if type(self.orig_layers[layer_idx]) == nn.Linear:
 

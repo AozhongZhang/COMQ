@@ -17,7 +17,6 @@ class COMQ_Layer:
 
         return closest_values_efficient
 
-
     def _quant_layer(W, iters, bits, X, greedy=False, scalar=1.0, device='cpu'):
         
         Q = W.clone()
@@ -30,8 +29,7 @@ class COMQ_Layer:
         ends = starts + (2**bits - 1)
         bit_code = scalar * torch.stack([torch.linspace(start, end, steps=2**bits) for start, end in zip(starts, ends)]).to(device)
         bit_code = bit_code * delta.unsqueeze(1)
-
-            
+      
         u = torch.zeros(X.shape[0], W.shape[0]).to(device)
 
         if greedy:
