@@ -23,7 +23,7 @@ All experiments were run on a single 40GB NVIDIA A40. However, some experiments 
 
 ## Usage 
 
-First, make sure ImageNet has been downloaded into data/ (we use the ILSVRC-2012 version).
+First, make sure ImageNet has been downloaded (we use the ILSVRC-2012 version).
 
 ### Run COMQ
 
