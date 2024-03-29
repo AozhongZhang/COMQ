@@ -32,7 +32,7 @@ First, make sure ImageNet has been downloaded (we use the ILSVRC-2012 version).
 python quantize_main.py vit_small_patch16_224 --data_path --batchsize 1024 --wbits 4 --greedy
 
 # Quantize Vision Transformer for 2 bit with batchtuning
-python quantize_main.py vit_small_patch16_224 --data_path --batchsize 1024 --wbits 4 --greedy --batchtuning --scalar 0.65
+python quantize_main.py vit_small_patch16_224 --data_path --batchsize 1024 --wbits 2 --greedy --batchtuning --scalar 0.65
 ```
 
 # BibTex
