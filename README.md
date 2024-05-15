@@ -21,9 +21,26 @@ The current release includes the following features:
 
 All experiments were run on a single 40GB NVIDIA A40. However, some experiments will work on a GPU with a lot less memory as well.
 
-## Usage 
+## Prepare ImageNet Dataset
 
-First, make sure ImageNet has been downloaded (we use the ILSVRC-2012 version).
+First, make sure ImageNet has been downloaded (we use the ILSVRC-2012 version). Place the .tar files for training set and validation set both under the data/ILSVRC2012 or your-path/ILSVRC2012.
+
+Then unzip Imagenet dataset:
+
+```
+# prepare the training data and move images to subfolders:
+mkdir ILSVRC2012_img_train
+mv ILSVRC2012_img_train.tar ILSVRC2012_img_train 
+cd ILSVRC2012_img_train 
+tar -xvf ILSVRC2012_img_train.tar && rm -f ILSVRC2012_img_train.tar
+find . -name "*.tar" | while read NAME ; do mkdir -p "${NAME%.tar}"; tar -xvf "${NAME}" -C "${NAME%.tar}"; rm -f "${NAME}"; done
+
+# Prepare the validation data:
+cd ..
+mkdir ILSVRC2012_img_val
+mv ILSVRC2012_img_val.tar ILSVRC2012_img_val && cd ILSVRC2012_img_val
+tar -xvf ILSVRC2012_img_val.tar && rm -f ILSVRC2012_img_val.tar
+```
 
 ### Run COMQ
 
